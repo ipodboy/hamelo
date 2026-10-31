@@ -1,0 +1,536 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Responsive canvas wrapper that scales the 1752px Figma frame proportionally */
+.page-viewport {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.figma-canvas {
+  position: relative;
+  width: 1752px;
+  transform-origin: top center;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.canvas-landing {
+  height: 1138px;
+  overflow: hidden;
+}
+
+.canvas-main {
+  height: 1264px;
+}
+
+.canvas-detail {
+  height: 1264px;
+}
+
+/* =========================================
+   1. LANDING PAGE (index.html)
+   ========================================= */
+.landing-logo {
+  position: absolute;
+  left: 54px;
+  top: 43px;
+  width: 204px;
+  height: 31px;
+  z-index: 10;
+  display: block;
+}
+
+.landing-logo img {
+  display: block;
+}
+
+.landing-video-wrap {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 8px);
+  transform: translate(-50%, -50%);
+  width: 1030px;
+  height: 580px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.landing-video-wrap img.video-fallback,
+.landing-video-wrap video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Main circular text: x:502, y:213, w:749, h:741 */
+.landing-main-text {
+  position: absolute;
+  left: 502px;
+  top: 213px;
+  width: 749px;
+  height: 741px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.landing-main-text img {
+  display: block;
+}
+
+/* GOOD GIFTS target area: x:502, y:378, w:80, h:186 */
+.good-gifts-hitbox {
+  position: absolute;
+  left: 502px;
+  top: 378px;
+  width: 80px;
+  height: 186px;
+  z-index: 8;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+  transform-origin: center center;
+}
+
+.good-gifts-hitbox img {
+  display: block;
+}
+
+.good-gifts-hitbox:hover,
+.good-gifts-hitbox.is-clicked {
+  transform: scale(1.06);
+}
+
+/* Click ripple effect when virtual cursor clicks GOOD GIFTS */
+.click-ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.65);
+  background: rgba(59, 158, 255, 0.22);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.good-gifts-hitbox.is-clicked .click-ripple {
+  animation: rippleExpand 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes rippleExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4.2);
+    opacity: 0;
+  }
+}
+
+/* Virtual mouse cursor that enters from the left after 10s */
+.virtual-cursor {
+  position: fixed;
+  left: -60px;
+  top: 55%;
+  width: 34px;
+  height: 34px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.28));
+  transform-origin: 6px 4px;
+  will-change: transform, left, top, opacity;
+}
+
+.virtual-cursor.is-clicking {
+  animation: cursorPress 0.35s ease-in-out;
+}
+
+@keyframes cursorPress {
+  0% { transform: scale(1); }
+  45% { transform: scale(0.78); }
+  100% { transform: scale(1); }
+}
+
+/* =========================================
+   2. MAIN & DETAIL HEADER
+   ========================================= */
+.site-logo {
+  position: absolute;
+  left: 54px;
+  top: 43px;
+  width: 235.001px;
+  height: 35px;
+  display: block;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.site-logo img {
+  display: block;
+}
+
+.nav-item {
+  position: absolute;
+  top: 52px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17px;
+  letter-spacing: -0.64px;
+  color: #000000;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.nav-item:hover {
+  opacity: 0.55;
+}
+
+.nav-all { left: 409px; }
+.nav-clothes { left: 604px; }
+.nav-object { left: 842px; }
+.nav-fbric { left: 1070px; }
+.nav-new { left: 1281px; }
+
+/* =========================================
+   3. BANNER SLIDER (main.html)
+   ========================================= */
+.banner-viewport {
+  position: absolute;
+  left: 0;
+  top: 135px;
+  width: 1753px;
+  height: 377px;
+  overflow: hidden;
+}
+
+.banner-track {
+  display: flex;
+  width: 300%; /* 2 slides + 1 clone for seamless infinite left-to-right / right-to-left sliding */
+  height: 100%;
+  transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.banner-slide {
+  position: relative;
+  width: 1753px;
+  height: 377px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Banner 1: SAVE THE COW (#ff3535) */
+.banner-slide-1 {
+  background-color: #ff3535;
+}
+
+.banner1-save {
+  position: absolute;
+  left: 51px;
+  top: 35px;
+  width: 1650px;
+  height: 154px;
+}
+
+.banner1-save img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.banner1-cow {
+  position: absolute;
+  left: 557px;
+  top: 56px;
+  width: 506px;
+  height: 321px;
+  overflow: hidden;
+}
+
+.banner1-cow img {
+  position: absolute;
+  left: -0.04%;
+  top: 0;
+  width: 100.08%;
+  height: 109.66%;
+  max-width: none;
+  display: block;
+}
+
+.banner1-date {
+  position: absolute;
+  left: 13px;
+  top: 254px;
+  width: 552px;
+  height: 91px;
+  overflow: hidden;
+}
+
+.banner1-date img {
+  position: absolute;
+  left: 8.4%;
+  top: -0.11%;
+  width: 195.04%;
+  height: 100.22%;
+  max-width: none;
+  display: block;
+}
+
+/* Banner 2: "NEWJEANS is 5" (#000000) */
+.banner-slide-2 {
+  background-color: #000000;
+}
+
+.banner2-title {
+  position: absolute;
+  left: 95px;
+  top: 55px;
+  width: 1137px;
+  height: 76px;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  font-weight: 400;
+  font-size: 127.941px;
+  line-height: 75px;
+  letter-spacing: -5.1176px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.banner2-rabbit {
+  position: absolute;
+  top: 209px;
+  width: 132px;
+  height: 106px;
+}
+
+.banner2-rabbit img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.rabbit-1 { left: 95px; }
+.rabbit-2 { left: 292px; }
+.rabbit-3 { left: 465px; }
+.rabbit-4 { left: 638px; }
+.rabbit-5 { left: 811px; }
+
+.banner2-shush {
+  position: absolute;
+  left: 1310px;
+  top: 0;
+  width: 443px;
+  height: 377px;
+  overflow: hidden;
+}
+
+.banner2-shush img {
+  position: absolute;
+  left: -0.03%;
+  top: -8.75%;
+  width: 100.06%;
+  height: 127.32%;
+  max-width: none;
+  display: block;
+}
+
+/* =========================================
+   4. PRODUCT ITEMS (main.html)
+   ========================================= */
+.product-link {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card {
+  cursor: pointer;
+}
+
+.product-thumb {
+  transition: transform 0.25s ease;
+}
+
+.product-card:hover .product-thumb {
+  transform: translateY(-4px);
+}
+
+.product-title {
+  position: absolute;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17px;
+  letter-spacing: -0.64px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.product-title.centered {
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.product-status {
+  position: absolute;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 17px;
+  letter-spacing: -0.8px;
+  color: #b5b5b5;
+  white-space: nowrap;
+}
+
+/* Individual Product Image Positions (exact Figma coordinates) */
+.thumb-blanket {
+  position: absolute;
+  left: 119px;
+  top: 569px;
+  width: 137px;
+  height: 207px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.thumb-blanket img {
+  position: absolute;
+  left: -8.03%;
+  top: -3.43%;
+  width: 115.33%;
+  height: 106.86%;
+  max-width: none;
+  display: block;
+}
+
+.thumb-lighters {
+  position: absolute;
+  left: 456px;
+  top: 599px;
+  width: 182px;
+  height: 131px;
+}
+
+.lighter-img {
+  position: absolute;
+  object-fit: cover;
+  display: block;
+}
+
+.lighter-blue { left: 0px; top: 0px; width: 41px; height: 131px; }
+.lighter-green { left: 47px; top: 1px; width: 40px; height: 130px; }
+.lighter-yellow { left: 95px; top: 0px; width: 40px; height: 130px; }
+.lighter-pink { left: 142px; top: 1px; width: 40px; height: 130px; }
+
+.thumb-cold {
+  position: absolute;
+  left: 834px;
+  top: 574px;
+  width: 57px;
+  height: 196px;
+}
+
+.thumb-cold img,
+.thumb-lifekit img,
+.thumb-controller img,
+.thumb-moss img,
+.thumb-bin img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumb-lifekit {
+  position: absolute;
+  left: 1038px;
+  top: 640px;
+  width: 277px;
+  height: 121px;
+}
+
+.thumb-controller {
+  position: absolute;
+  left: 1421px;
+  top: 613px;
+  width: 229px;
+  height: 138px;
+}
+
+.thumb-moss {
+  position: absolute;
+  left: 94px;
+  top: 950px;
+  width: 190.423px;
+  height: 148px;
+}
+
+.thumb-bin {
+  position: absolute;
+  left: 472px;
+  top: 897px;
+  width: 143px;
+  height: 222px;
+}
+
+/* =========================================
+   5. DETAIL PAGE (detail.html)
+   ========================================= */
+.detail-image-box {
+  position: absolute;
+  left: 50%;
+  top: 220px;
+  transform: translateX(-50%);
+  width: 906px;
+  height: 906px;
+}
+
+.detail-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-preparing-text {
+  position: absolute;
+  left: 563px;
+  top: 915px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 500;
+  font-size: 151.529px;
+  line-height: 161px;
+  letter-spacing: -6.0612px;
+  color: #ffffff;
+  white-space: nowrap;
+  pointer-events: none;
+}

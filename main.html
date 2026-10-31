@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAMELO. — MAIN</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-viewport" id="page-viewport">
+    <div class="figma-canvas canvas-main" id="figma-canvas" data-node-id="3290:59">
+      <!-- 상단 로고 (클릭 시 랜딩 페이지로 이동) -->
+      <a href="index.html" class="site-logo" data-node-id="3290:60" title="HAMELO. 랜딩으로 이동">
+        <img src="assets/logo-main.svg" alt="HAMELO." />
+      </a>
+
+      <!-- 상단 카테고리 메뉴 (장식용) -->
+      <span class="nav-item nav-all" data-node-id="3293:259">ALL</span>
+      <span class="nav-item nav-clothes" data-node-id="3293:257">CLOTHES</span>
+      <span class="nav-item nav-object" data-node-id="3293:261">OBJECT</span>
+      <span class="nav-item nav-fbric" data-node-id="3293:262">FBRIC</span>
+      <span class="nav-item nav-new" data-node-id="3293:260">NEW ARRIVALS</span>
+
+      <!-- 5초마다 좌우 슬라이드로 넘어가는 배너 영역 (2장 + 무한루프용 클론 1장) -->
+      <div class="banner-viewport" data-node-id="3296:386">
+        <div class="banner-track" id="banner-track">
+          <!-- 배너 1: SAVE THE COW -->
+          <div class="banner-slide banner-slide-1" data-node-id="3296:379">
+            <div class="banner1-save" data-node-id="3294:278">
+              <img src="assets/banner1-save.png" alt="SAVE THE COW" />
+            </div>
+            <div class="banner1-cow" data-node-id="3294:285">
+              <img src="assets/banner1-cow.png" alt="Cow" />
+            </div>
+            <div class="banner1-date" data-node-id="3294:288">
+              <img src="assets/banner1-date.png" alt="2022.10.23" />
+            </div>
+          </div>
+
+          <!-- 배너 2: "NEWJEANS is 5" -->
+          <div class="banner-slide banner-slide-2" data-node-id="3296:384">
+            <p class="banner2-title" data-node-id="3296:371">“NEWJEANS is 5”</p>
+            <div class="banner2-rabbit rabbit-1" data-node-id="3296:372">
+              <img src="assets/banner2-rabbit1.png" alt="Rabbit 1" />
+            </div>
+            <div class="banner2-rabbit rabbit-2" data-node-id="3296:373">
+              <img src="assets/banner2-rabbit2.png" alt="Rabbit 2" />
+            </div>
+            <div class="banner2-rabbit rabbit-3" data-node-id="3296:374">
+              <img src="assets/banner2-rabbit3.png" alt="Rabbit 3" />
+            </div>
+            <div class="banner2-rabbit rabbit-4" data-node-id="3296:375">
+              <img src="assets/banner2-rabbit4.png" alt="Rabbit 4" />
+            </div>
+            <div class="banner2-rabbit rabbit-5" data-node-id="3296:376">
+              <img src="assets/banner2-rabbit5.png" alt="Rabbit 5" />
+            </div>
+            <div class="banner2-shush" data-node-id="3296:377">
+              <img src="assets/banner2-shush-rabbit.png" alt="Rabbit Shush" />
+            </div>
+          </div>
+
+          <!-- 배너 1 클론 (자연스러운 우->좌 무한 슬라이드 전환용) -->
+          <div class="banner-slide banner-slide-1" aria-hidden="true">
+            <div class="banner1-save">
+              <img src="assets/banner1-save.png" alt="" />
+            </div>
+            <div class="banner1-cow">
+              <img src="assets/banner1-cow.png" alt="" />
+            </div>
+            <div class="banner1-date">
+              <img src="assets/banner1-date.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 상품 리스트 (클릭 시 detail.html로 이동) -->
+      <!-- 1. 2022 KRAMPUS BLAKET -->
+      <a href="detail.html" class="product-link">
+        <div class="product-card">
+          <div class="product-thumb thumb-blanket" data-node-id="3293:265">
+            <img src="assets/item-blanket.png" alt="2022 KRAMPUS BLAKET" />
+          </div>
+          <p class="product-title" style="left: 102px; top: 792px;" data-node-id="3293:266">2022 KRAMPUS BLAKET</p>
+          <p class="product-status" style="left: 140px; top: 818px;" data-node-id="3293:267">SOLD OUT</p>
+        </div>
+      </a>
+
+      <!-- 2. COLOR LIGHRTER -->
+      <a href="detail.html" class="product-link">
+        <div class="product-card">
+          <div class="product-thumb thumb-lighters" data-node-id="3293:275">
+            <img src="assets/lighter-blue.png" alt="Blue Lighter" class="lighter-img lighter-blue" data-node-id="3293:268" />
+            <img src="assets/lighter-green.png" alt="Green Lighter" class="lighter-img lighter-green" data-node-id="3293:271" />
+            <img src="assets/lighter-yellow.png" alt="Yellow Lighter" class="lighter-img lighter-yellow" data-node-id="3293:273" />
+            <img src="assets/lighter-pink.png" alt="Pink Lighter" class="lighter-img lighter-pink" data-node-id="3293:274" />
+          </div>
+          <p class="product-title" style="left: 487px; top: 792px;" data-node-id="3293:269">COLOR LIGHRTER</p>
+          <p class="product-status" style="left: 501px; top: 818px;" data-node-id="3293:270">SOLD OUT</p>
+        </div>
+      </a>
+
+      <!-- 3. COLD -->
+      <a href="detail.html" class="product-link">
+        <div class="product-card">
+          <div class="product-thumb thumb-cold" data-node-id="3295:307">
+            <img src="assets/item-cold.png" alt="COLD" />
+          </div>
+          <p class="product-title centered" style="left: 867.5px; top: 792px;" data-node-id="3295:312">COLD</p>
+          <p class="product-status" style="left: 820px; top: 818px;" data-node-id="3295:314">SOLD OUT</p>
+        </div>
+      </a>
+
+      <!-- 4. LIFE KIT -->
+      <a href="detail.html" class="product-link">
+        <div class="product-card">
+          <div class="product-thumb thumb-lifekit" data-node-id="3295:311">
+            <img src="assets/item-lifekit.png" alt="LIFE KIT" />
+          </div>
+          <p class="product-title centered" style="left: 1184.5px; top: 792px;" data-node-id="3295:313">LIFE KIT</p>
+          <p class="product-status" style="left: 1137px; top: 818px;" data-node-id="3295:315">SOLD OUT</p>
+        </div>
+      </a>
+
+      <!-- 5. REAL CONTROLLER -->
+      <a href="detail.html" class="product-link">
+        <div class="product-card">
+          <div class="product-thumb thumb-controller" data-node-id="3295:309">
+            <img src="assets/item-controller.png" alt="REAL CONTROLLER" />
+          </div>
+          <p class="product-title centered" style="left: 1535px; top: 792px;" data-node-id="3295:316">REAL CONTROLLER</p>
+          <p class="product-status" style="left: 1488px; top: 818px;" data-node-id="3295:317">SOLD OUT</p>
+        </div>
+      </a>
+
+      <!-- 6. MOSS -->
+      <a href="detail.html" class="product-link">
+        <div class="product-card">
+          <div class="product-thumb thumb-moss" data-node-id="3295:310">
+            <img src="assets/item-moss.png" alt="MOSS" />
+          </div>
+          <p class="product-title" style="left: 165px; top: 1143px;" data-node-id="3295:323">MOSS</p>
+          <p class="product-status" style="left: 140px; top: 1169px;" data-node-id="3295:324">SOLD OUT</p>
+        </div>
+      </a>
+
+      <!-- 7. BIN -->
+      <a href="detail.html" class="product-link">
+        <div class="product-card">
+          <div class="product-thumb thumb-bin" data-node-id="3295:308">
+            <img src="assets/item-bin.png" alt="BIN" />
+          </div>
+          <p class="product-title centered" style="left: 541.5px; top: 1143px;" data-node-id="3295:325">BIN</p>
+          <p class="product-status" style="left: 494px; top: 1169px;" data-node-id="3295:326">SOLD OUT</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // 화면 너비에 맞춰 1752px 피그마 캔버스 비율 자동 스케일링
+    const canvas = document.getElementById('figma-canvas');
+    const viewport = document.getElementById('page-viewport');
+
+    function fitCanvas() {
+      const scale = window.innerWidth / 1752;
+      canvas.style.transform = `scale(${scale})`;
+      viewport.style.height = `${Math.ceil(1264 * scale)}px`;
+    }
+    window.addEventListener('resize', fitCanvas);
+    fitCanvas();
+
+    // 5초마다 좌우 슬라이드로 넘어가는 배너 캐러셀
+    const bannerTrack = document.getElementById('banner-track');
+    let currentSlide = 0;
+
+    setInterval(() => {
+      currentSlide += 1;
+      bannerTrack.style.transition = 'transform 0.75s cubic-bezier(0.25, 1, 0.5, 1)';
+      bannerTrack.style.transform = `translateX(-${currentSlide * 1753}px)`;
+
+      // 클론 슬라이드(인덱스 2)에 도달하면 애니메이션 끝난 직후 첫 번째 슬라이드(인덱스 0)로 무음 리셋
+      if (currentSlide === 2) {
+        setTimeout(() => {
+          bannerTrack.style.transition = 'none';
+          currentSlide = 0;
+          bannerTrack.style.transform = 'translateX(0px)';
+        }, 780);
+      }
+    }, 5000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAMELO.</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-viewport" id="page-viewport">
+    <div class="figma-canvas canvas-landing" id="figma-canvas" data-node-id="3282:2">
+      <!-- 좌측 상단 HAMELO 로고 -->
+      <div class="landing-logo" data-node-id="3290:58" title="HAMELO.">
+        <img src="assets/logo-landing.svg" alt="HAMELO." />
+      </div>
+
+      <!-- 중앙 불꽃 영상 (assets/flame.mp4가 없을 때는 Figma의 불꽃 이미지를 기본 표시) -->
+      <div class="landing-video-wrap" data-node-id="3296:390">
+        <img src="assets/landing-video-poster.png" alt="" class="video-fallback" />
+        <video
+          id="flame-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          poster="assets/landing-video-poster.png"
+        >
+          <source src="assets/flame.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- 원형 배치 텍스트 이미지 -->
+      <div class="landing-main-text" id="main-text-circle" data-node-id="3292:255">
+        <img src="assets/main-text.svg" alt="FOR IT IS BECAUSE I BESTOWED GOOD GIFTS ON MORTALS THAT THIS MISERABLE YOKE OF CONSTRAINT HAS BEEN BOUND UPON ME" />
+      </div>
+
+      <!-- GOOD GIFTS 타겟 영역 (마우스가 찾아가서 클릭하는 위치) -->
+      <div class="good-gifts-hitbox" id="good-gifts-target" data-node-id="3296:414" title="GOOD GIFTS">
+        <img src="assets/good-gifts.svg" alt="GOOD GIFTS" />
+        <span class="click-ripple"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10초 뒤 화면 왼쪽에서 나타나 4초간 GOOD GIFTS로 이동해 클릭하는 가상 마우스 커서 -->
+  <div class="virtual-cursor" id="virtual-cursor" aria-hidden="true">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M6.5 3.5L27.5 16.2L17.4 18.8L22.2 28.5L18.1 30.5L13.3 20.8L6.5 26.8V3.5Z"
+        fill="#000000"
+        stroke="#FFFFFF"
+        stroke-width="2.2"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+
+  <script>
+    // 화면 너비에 맞춰 1752px 피그마 캔버스 비율 자동 스케일링
+    const canvas = document.getElementById('figma-canvas');
+    const viewport = document.getElementById('page-viewport');
+
+    function fitCanvas() {
+      const scale = Math.min(window.innerWidth / 1752, window.innerHeight / 1138);
+      canvas.style.transform = `scale(${scale})`;
+      viewport.style.height = `${Math.ceil(1138 * scale)}px`;
+    }
+    window.addEventListener('resize', fitCanvas);
+    fitCanvas();
+
+    // 사용자 직접 클릭 시 GOOD GIFTS 영역만 클릭 가능하도록 설정
+    const goodGiftsTarget = document.getElementById('good-gifts-target');
+    let isNavigating = false;
+
+    function goToMainPage() {
+      if (isNavigating) return;
+      isNavigating = true;
+      window.location.href = 'main.html';
+    }
+
+    goodGiftsTarget.addEventListener('click', goToMainPage);
+
+    // ====================================================
+    // 랜딩 연출 설정값 (필요 시 시간 조정 가능)
+    // ====================================================
+    const WAIT_BEFORE_CURSOR_MS = 10000; // 10초 대기
+    const CURSOR_MOVE_DURATION_MS = 4000; // 4초 동안 자연스럽게 이동
+
+    const virtualCursor = document.getElementById('virtual-cursor');
+
+    // 부드러운 가감속 (easeInOutCubic)
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    // 2차 베지어 곡선 보간 (자연스러운 마우스 궤적)
+    function quadraticBezier(p0, p1, p2, t) {
+      const u = 1 - t;
+      return u * u * p0 + 2 * u * t * p1 + t * t * p2;
+    }
+
+    function startCursorSequence() {
+      if (isNavigating) return;
+
+      // GOOD GIFTS 요소의 현재 화면(뷰포트) 내 정확한 중앙 좌표 계산
+      const rect = goodGiftsTarget.getBoundingClientRect();
+      const targetX = rect.left + rect.width * 0.48;
+      const targetY = rect.top + rect.height * 0.48;
+
+      // 시작점: 화면 왼쪽 바깥
+      const startX = -40;
+      const startY = Math.min(window.innerHeight * 0.65, targetY + 140);
+
+      // 중간 제어점: 살짝 위쪽으로 호를 그리며 자연스럽게 접근
+      const controlX = (startX + targetX) * 0.45;
+      const controlY = Math.max(60, Math.min(startY, targetY) - 90);
+
+      virtualCursor.style.left = `${startX}px`;
+      virtualCursor.style.top = `${startY}px`;
+      virtualCursor.style.opacity = '1';
+
+      const startTime = performance.now();
+
+      function animateMove(now) {
+        if (isNavigating) return;
+        const elapsed = now - startTime;
+        const rawProgress = Math.min(elapsed / CURSOR_MOVE_DURATION_MS, 1);
+        const eased = easeInOutCubic(rawProgress);
+
+        // 현재 타겟 위치를 실시간 반영 (창 크기 변경에도 정확히 도달)
+        const currentRect = goodGiftsTarget.getBoundingClientRect();
+        const endX = currentRect.left + currentRect.width * 0.48;
+        const endY = currentRect.top + currentRect.height * 0.48;
+
+        const currentX = quadraticBezier(startX, controlX, endX, eased);
+        const currentY = quadraticBezier(startY, controlY, endY, eased);
+
+        virtualCursor.style.left = `${currentX}px`;
+        virtualCursor.style.top = `${currentY}px`;
+
+        if (rawProgress < 1) {
+          requestAnimationFrame(animateMove);
+        } else {
+          // 도착 후 GOOD GIFTS 클릭 연출 → 메인 페이지로 이동
+          virtualCursor.classList.add('is-clicking');
+          goodGiftsTarget.classList.add('is-clicked');
+          setTimeout(() => {
+            goToMainPage();
+          }, 450);
+        }
+      }
+
+      requestAnimationFrame(animateMove);
+    }
+
+    setTimeout(startCursorSequence, WAIT_BEFORE_CURSOR_MS);
+  </script>
+</body>
+</html>
