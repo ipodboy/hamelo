@@ -41,7 +41,8 @@ html, body {
   height: 1264px;
 }
 
-.canvas-detail {
+.canvas-detail,
+.canvas-krampus {
   height: 1264px;
 }
 
@@ -533,4 +534,22 @@ html, body {
   color: #ffffff;
   white-space: nowrap;
   pointer-events: none;
+}
+
+/* =========================================
+   6. 2022 KRAMPUS BLAKET PAGE (krampus.html)
+   ========================================= */
+.krampus-image-box {
+  position: absolute;
+  left: 564px;
+  top: 161px;
+  width: 624px;
+  height: 943px;
+}
+
+.krampus-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

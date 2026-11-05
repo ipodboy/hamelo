@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAMELO. — 2022 KRAMPUS BLAKET</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-viewport" id="page-viewport">
+    <div class="figma-canvas canvas-krampus" id="figma-canvas" data-node-id="3872:111">
+      <!-- 상단 로고 (클릭 시 메인 페이지로 복귀) -->
+      <a href="main.html" class="site-logo" data-node-id="3887:877" title="메인 페이지로 돌아가기">
+        <img src="assets/logo-krampus.svg" alt="HAMELO." />
+      </a>
+
+      <!-- 2022 KRAMPUS BLAKET 상세 이미지 -->
+      <div class="krampus-image-box" data-node-id="3885:585">
+        <img src="assets/krampus-blanket-detail.png" alt="2022 KRAMPUS BLAKET" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 화면 너비에 맞춰 1752px 피그마 캔버스 비율 자동 스케일링
+    const canvas = document.getElementById('figma-canvas');
+    const viewport = document.getElementById('page-viewport');
+
+    function fitCanvas() {
+      const scale = window.innerWidth / 1752;
+      canvas.style.transform = `scale(${scale})`;
+      viewport.style.height = `${Math.ceil(1264 * scale)}px`;
+    }
+    window.addEventListener('resize', fitCanvas);
+    fitCanvas();
+  </script>
+</body>
+</html>
