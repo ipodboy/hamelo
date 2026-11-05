@@ -4,14 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HAMELO. — 2022 KRAMPUS BLAKET</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <style>
+    .canvas-krampus {
+      height: 1264px;
+    }
+    .krampus-image-box {
+      position: absolute;
+      left: 564px;
+      top: 161px;
+      width: 624px;
+      height: 943px;
+    }
+    .krampus-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div class="page-viewport" id="page-viewport">
     <div class="figma-canvas canvas-krampus" id="figma-canvas" data-node-id="3872:111">
       <!-- 상단 로고 (클릭 시 메인 페이지로 복귀) -->
       <a href="main.html" class="site-logo" data-node-id="3887:877" title="메인 페이지로 돌아가기">
-        <img src="assets/logo-krampus.svg" alt="HAMELO." />
+        <img src="assets/logo-main.svg" alt="HAMELO." />
       </a>
 
       <!-- 2022 KRAMPUS BLAKET 상세 이미지 -->
