@@ -164,7 +164,7 @@
     const viewport = document.getElementById('page-viewport');
 
     function fitCanvas() {
-      const scale = window.innerWidth / 1752;
+      const scale = Math.min(window.innerWidth / 1752, window.innerHeight / 1264);
       canvas.style.transform = `scale(${scale})`;
       viewport.style.height = `${Math.ceil(1264 * scale)}px`;
     }
